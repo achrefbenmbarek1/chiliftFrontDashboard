@@ -35,18 +35,7 @@ export default function UsersTable({ route }) {
                         <DataTable.Title style={styles.title}>Health</DataTable.Title>
 
                     </DataTable.Header>
-                    {!searchQuery ? dataForCurrentPage.filter(user => {
-                        return (
-                            user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            user.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            user.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            user.height.toString().toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            user.gender.toString().toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            user.job.toString().toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            user.health.toString().toLowerCase().includes(searchQuery.toLowerCase())
-                        )
-                    })?.map(user => {
+                    {!searchQuery ? dataForCurrentPage?.map(user => {
                         return (
                             <DataTable.Row key={user._id}>
                                 <DataTable.Cell style={styles.cell}>{user?.firstName}</DataTable.Cell>
