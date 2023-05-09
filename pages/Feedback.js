@@ -6,7 +6,7 @@ import { Button } from 'react-native-paper';
 import * as SecureStore from 'expo-secure-store';
 
 
-export function Feedback({navigation}) {
+export function Feedback({ navigation }) {
     const [feedbacks, setFeedbacks] = useState([]);
     const [loading, setLoading] = useState(true);
     const scrollViewRef = useRef(null);
@@ -57,27 +57,27 @@ export function Feedback({navigation}) {
                     // }}
                     >
                         {feedbacks?.map(feedback => {
+                            const { rating, userEmail, anythingToAdd } = feedback;
                             return (
                                 <MyCard key={feedback._id}
-                                    rating={feedback.rating}
-                                    userEmail={feedback.userEmail}
-                                    userName={feedback.userName}
-                                    anythingToAdd={feedback.anythingToAdd}
-                                    questions={feedback.questions}
-                                    inspectCard={async(e)=>{
-                                        await SecureStore.setItemAsync('feedback1',JSON.stringify(feedback))
-                                        navigation.navigate('InspectorNestedNavigator',{
-                                        screen:'InspectorScreen',
-                                        params:{data:'data'}
-                                    })}
-                                    
-                                }
+                                    fields={[
+                                        { label: 'Rating', value: rating },
+                                        { label: 'Email', value: userEmail },
+                                        { label: 'Anything to Add', value: anythingToAdd },
+                                    ]}
+                                    inspectCard={async (e) => {
+                                        await SecureStore.setItemAsync('feedback1', JSON.stringify(feedback))
+                                        navigation.navigate('InspectorNestedNavigator', {
+                                            screen: 'InspectorScreen',
+                                            params: { data: 'data' }
+                                        })
+                                    }}
                                 />
                             )
                         })}
                     </ScrollView>
                     <View style={styles.buttons}>
-                        <Button mode='contained' onPress={scrollToPrevious} style={{ height: 40}}>{'<<'}</Button>
+                        <Button mode='contained' onPress={scrollToPrevious} style={{ height: 40 }}>{'<<'}</Button>
                         <Button mode='contained' onPress={scrollToNext} style={{ height: 40 }}>{'>>'}</Button>
                     </View>
                     {/* <TouchableOpacity style={styles.arrowRight} onPress={scrollToNext}> */}
@@ -93,28 +93,28 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    arrowLeft: {
-        // position: 'absolute',
-        top: 0,
-        bottom: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-        left: 0,
-        width: 40,
-    },
-    arrowRight: {
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-        right: 0,
-        width: 40,
-    },
-    arrowText: {
-        fontSize: 24,
-        color: 'black',
-    },
+    // arrowLeft: {
+    //     // position: 'absolute',
+    //     top: 0,
+    //     bottom: 0,
+    //     justifyContent: 'center',
+    //     alignItems: 'center',
+    //     left: 0,
+    //     width: 40,
+    // },
+    // arrowRight: {
+    //     position: 'absolute',
+    //     top: 0,
+    //     bottom: 0,
+    //     justifyContent: 'center',
+    //     alignItems: 'center',
+    //     right: 0,
+    //     width: 40,
+    // },
+    // arrowText: {
+    //     fontSize: 24,
+    //     color: 'black',
+    // },
     buttons: {
         flex: 1,
         flexDirection: 'row',

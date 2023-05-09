@@ -8,6 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Feedback } from './pages/Feedback';
 import CustomDrawerContent from './components/navigation/CustomDrawerContent';
 import InspectorNestedNavigator from './components/navigation/InspectorNestedNavigator';
+import { Articles } from './pages/Articles';
 
 const Drawer = createDrawerNavigator();
 export default function App() {
@@ -37,6 +38,8 @@ export default function App() {
                         <Drawer.Screen name="Table" component={UsersTable} initialParams={{ table: table }}>
                         </Drawer.Screen>
                         <Drawer.Screen name="Feedback" component={Feedback}>
+                        </Drawer.Screen>
+                        <Drawer.Screen name="Articles" component={Articles}>
                         </Drawer.Screen>
                         <Drawer.Screen name="InspectorNestedNavigator"
                             component={InspectorNestedNavigator}
