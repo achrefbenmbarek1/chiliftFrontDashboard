@@ -6,6 +6,8 @@ import { useIsFocused } from '@react-navigation/native';
 import { Button, TextInput } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 import Constants from 'expo-constants';
+import MyImagePicker from '../components/MyImagePicker';
+import { Articles } from './Articles';
 
 export function ModifyArticle({ route, navigation }) {
     const isFocused = useIsFocused();
@@ -34,10 +36,12 @@ export function ModifyArticle({ route, navigation }) {
             if (!response.ok) {
                 return console.log('Patch request unsuccessful');
             }
+            navigation.navigate(Articles);
         } catch (error) {
             console.error('An error occurred during the patch request:', error);
         }
     }
+
     useEffect(() => {
         const getData = async () => {
             try {
@@ -89,6 +93,9 @@ export function ModifyArticle({ route, navigation }) {
                                 style={styles.textInput}
                             />
                         </ScrollView>
+                        <MyImagePicker 
+                            key={article._id}
+                            setImageName = {setImageName}/>
                         <Button mode='contained' style={{ height: 40 }} onPress={onModify}>modify</Button>
 
                     </View>

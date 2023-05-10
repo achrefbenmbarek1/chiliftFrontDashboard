@@ -18,6 +18,10 @@ const CustomDrawerContent = ({ navigation }) => {
                     label="Articles"
                     onPress={() => navigation.navigate('Articles')}
                 />
+                <DrawerItem
+                    label="AddArticle"
+                    onPress={() => navigation.navigate('AddArticle')}
+                />
             </DrawerContentScrollView>
         </View>
     );
